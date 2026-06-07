@@ -551,3 +551,116 @@ section { position: relative; }
   }
   .admin-section-label { display: none; }
 }
+
+/* =========================================================
+   RESPONSIVE — Tablet (≤1100px)
+   ========================================================= */
+@media (max-width: 1100px) {
+  .header-nav { display: none !important; }
+
+  .hero-stats        { grid-template-columns: repeat(2, 1fr) !important; }
+  .services-grid     { grid-template-columns: 1fr !important; }
+  .work-grid         { grid-template-columns: 1fr !important; }
+  .work-grid .card   { grid-column: auto !important; }
+  .agent-grid        { grid-template-columns: 1fr !important; gap: 40px !important; }
+  .process-grid      { grid-template-columns: repeat(3, 1fr) !important; }
+  .stats-grid        { grid-template-columns: 1fr !important; gap: 40px !important; }
+  .footer-grid       { grid-template-columns: repeat(2, 1fr) !important; gap: 32px !important; }
+
+  .product-row       { grid-template-columns: 1fr !important; gap: 16px !important; padding: 28px 24px !important; }
+  .stack-grid        { grid-template-columns: repeat(2, 1fr) !important; }
+  .team-grid         { grid-template-columns: repeat(2, 1fr) !important; }
+  .pricing-grid      { grid-template-columns: 1fr !important; max-width: 480px; margin-inline: auto; }
+  .blog-featured     { grid-template-columns: 1fr !important; }
+  .blog-grid         { grid-template-columns: repeat(2, 1fr) !important; }
+  .careers-row       { grid-template-columns: 1fr auto auto !important; gap: 12px !important; }
+  .careers-row > *:nth-child(1) { display: none !important; }
+  .careers-row > *:nth-child(4) { display: none !important; }
+  .benefits-grid     { grid-template-columns: repeat(2, 1fr) !important; }
+  .contact-grid      { grid-template-columns: 1fr !important; }
+  .docs-grid         { grid-template-columns: 1fr !important; }
+  .docs-grid > aside { display: none !important; }
+  .about-grid        { grid-template-columns: 1fr !important; gap: 40px !important; }
+  .case-metrics      { grid-template-columns: repeat(3, 1fr) !important; }
+  .case-content      { grid-template-columns: 1fr !important; gap: 40px !important; }
+  .work-row          { grid-template-columns: 1fr auto auto !important; gap: 12px !important; }
+  .work-row > *:nth-child(1) { display: none !important; }
+  .work-row > *:nth-child(4) { display: none !important; }
+  .work-row > *:nth-child(5) { display: none !important; }
+}
+
+/* =========================================================
+   RESPONSIVE — Mobile (≤768px)
+   ========================================================= */
+@media (max-width: 768px) {
+  .container       { width: min(1320px, 100% - 32px) !important; }
+  .container-wide  { width: min(1480px, 100% - 32px) !important; }
+
+  .hero-stats      { grid-template-columns: 1fr 1fr !important; }
+  .process-grid    { grid-template-columns: 1fr !important; }
+  .footer-grid     { grid-template-columns: 1fr !important; }
+  .footer-bottom   { flex-direction: column !important; gap: 12px !important; align-items: flex-start !important; }
+  .blog-grid       { grid-template-columns: 1fr !important; }
+  .benefits-grid   { grid-template-columns: 1fr !important; }
+  .stack-grid      { grid-template-columns: 1fr 1fr !important; }
+  .team-grid       { grid-template-columns: 1fr 1fr !important; }
+  .careers-row     { grid-template-columns: 1fr !important; gap: 8px !important; padding: 20px !important; }
+  .careers-row > * { display: block !important; }
+  .careers-row > *:nth-child(1) { display: none !important; }
+  .work-row        { grid-template-columns: 1fr !important; gap: 8px !important; padding: 20px !important; }
+  .work-row > *    { display: block !important; }
+  .work-row > *:nth-child(1) { display: none !important; }
+
+  .hero-cta        { flex-direction: column !important; align-items: flex-start !important; }
+  .hero-btns       { width: 100%; }
+  .hero-btns .btn  { flex: 1; justify-content: center; }
+
+  .cta-inner       { padding: 48px 24px !important; }
+  .cta-flex        { flex-direction: column !important; align-items: flex-start !important; }
+
+  /* Mobile hamburger menu */
+  .mobile-menu-btn { display: flex !important; }
+  .header-actions .btn-primary { display: none !important; }
+
+  .mobile-nav {
+    position: fixed; inset: 0; z-index: 100;
+    background: var(--bg);
+    display: flex; flex-direction: column;
+    padding: 80px 24px 32px;
+    gap: 4px;
+    overflow-y: auto;
+  }
+  .mobile-nav a {
+    display: block;
+    padding: 14px 16px;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: var(--r-sm);
+    transition: background 0.12s;
+  }
+  .mobile-nav a:hover { background: var(--surface); }
+  .mobile-nav-close {
+    position: absolute; top: 16px; right: 16px;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE — Small mobile (≤480px)
+   ========================================================= */
+@media (max-width: 480px) {
+  .container       { width: min(1320px, 100% - 24px) !important; }
+  .container-wide  { width: min(1480px, 100% - 24px) !important; }
+
+  .hero-stats      { grid-template-columns: 1fr !important; }
+  .case-metrics    { grid-template-columns: 1fr !important; }
+  .stack-grid      { grid-template-columns: 1fr !important; }
+  .team-grid       { grid-template-columns: 1fr !important; }
+
+  .form-2col       { grid-template-columns: 1fr !important; }
+}
+
+/* Mobile menu button — hidden by default, shown on mobile */
+.mobile-menu-btn { display: none !important; }
+@media (max-width: 1100px) {
+  .mobile-menu-btn { display: flex !important; }
+}

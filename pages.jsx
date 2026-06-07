@@ -26,7 +26,7 @@ const ProductsPage = () => (
     <section style={{ padding: "100px 0", borderTop: "1px solid var(--border)" }}>
       <div className="container">
         <SectionHead eyebrow="The stack" title="What we use, and why."/>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24 }}>
+        <div className="stack-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24 }}>
           {[
             { c: "Languages",  items: ["TypeScript", "JavaScript", "HTML/CSS", "SQL", "Python"] },
             { c: "Frameworks", items: ["React", "Node.js", "Express", "Capacitor", "Tailwind CSS"] },
@@ -54,7 +54,7 @@ const ProductsPage = () => (
 );
 
 const ProductRow = ({ s, idx }) => (
-  <div style={{
+  <div className="product-row" style={{
     background: "var(--surface)",
     padding: "48px 36px",
     display: "grid",
@@ -129,7 +129,7 @@ const WorkIndex = () => {
 
         <div className="container">
           {view === "grid" ? (
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 24 }}>
+            <div className="work-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 24 }}>
               {filtered.map((c) => <WorkCard key={c.id} c={c}/>)}
             </div>
           ) : (
@@ -149,7 +149,7 @@ const WorkIndex = () => {
 };
 
 const WorkRow = ({ c, i }) => (
-  <a href={`#/work/${c.id}`} style={{
+  <a href={`#/work/${c.id}`} className="work-row" style={{
     background: "var(--surface)",
     padding: "28px 32px",
     display: "grid",
@@ -196,7 +196,7 @@ const CaseStudyDetail = ({ c }) => {
       </section>
 
       <section style={{ paddingBottom: 100 }}>
-        <div className="container" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 24 }}>
+        <div className="container case-metrics" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 24 }}>
           {c.metrics.map((m) => (
             <div key={m.k} className="card card-pad" style={{ padding: 32 }}>
               <div className="t-display" style={{ fontSize: 56 }}>{m.v}</div>
@@ -207,7 +207,7 @@ const CaseStudyDetail = ({ c }) => {
       </section>
 
       <section style={{ paddingBottom: 120 }}>
-        <div className="container" style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 80 }}>
+        <div className="container case-content" style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 80 }}>
           <div>
             <div className="t-eyebrow" style={{ marginBottom: 12 }}>Stack</div>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
@@ -253,7 +253,7 @@ const AboutPage = () => (
     />
 
     <section style={{ paddingBottom: 100 }}>
-      <div className="container" style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: 80, alignItems: "center" }}>
+      <div className="container about-grid" style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: 80, alignItems: "center" }}>
         <Placeholder label="Studio · group photo · 16:10" ratio="16/10"/>
         <div>
           <div className="t-eyebrow" style={{ marginBottom: 12 }}><span className="dot"/>Operating principles</div>
@@ -282,7 +282,7 @@ const AboutPage = () => (
     <section style={{ padding: "100px 0", borderTop: "1px solid var(--border)" }}>
       <div className="container">
         <SectionHead eyebrow="The team" title="Who's behind Elonyx."/>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24 }}>
+        <div className="team-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24 }}>
           {TEAM.map((t) => (
             <div key={t.name} className="card" style={{ padding: 24, display: "flex", flexDirection: "column", gap: 14 }}>
               <Placeholder label={t.initials} ratio="1/1" style={{ borderRadius: "var(--r-md)" }}/>
@@ -341,7 +341,7 @@ const PricingPage = () => {
         </div>
       </section>
       <section style={{ paddingBottom: 100 }}>
-        <div className="container" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }}>
+        <div className="container pricing-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }}>
           {PRICING.map((p) => <PricingCard key={p.tier} p={p} annual={annual}/>)}
         </div>
       </section>
@@ -455,7 +455,7 @@ const BlogIndex = () => {
       </section>
       <section style={{ paddingBottom: 100 }}>
         <div className="container">
-          <a href={`#/blog/${filtered[0].id}`} className="card" style={{
+          <a href={`#/blog/${filtered[0].id}`} className="card blog-featured" style={{
             display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: 0,
             overflow: "hidden", marginBottom: 48, padding: 0,
           }}>
@@ -470,7 +470,7 @@ const BlogIndex = () => {
             </div>
           </a>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }}>
+          <div className="blog-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }}>
             {filtered.slice(1).map((b) => (
               <a key={b.id} href={`#/blog/${b.id}`} className="card" style={{ padding: 0, overflow: "hidden" }}>
                 <Placeholder label={b.tag} ratio="3/2" style={{ borderRadius: 0, border: "none", borderBottom: "1px solid var(--border)" }}/>
@@ -536,7 +536,7 @@ const CareersPage = () => (
       <div className="container">
         <div style={{ display: "flex", flexDirection: "column", gap: 1, background: "var(--border)", border: "1px solid var(--border)", borderRadius: "var(--r-lg)", overflow: "hidden" }}>
           {JOBS.map((j, i) => (
-            <a key={j.title} href="#/contact" style={{
+            <a key={j.title} href="#/contact" className="careers-row" style={{
               background: "var(--surface)",
               padding: "28px 32px",
               display: "grid", gridTemplateColumns: "60px 2fr 1fr 1fr 32px", gap: 16, alignItems: "center",
@@ -555,7 +555,7 @@ const CareersPage = () => (
     <section style={{ padding: "80px 0", borderTop: "1px solid var(--border)" }}>
       <div className="container">
         <SectionHead eyebrow="Benefits" title="What you get."/>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24 }}>
+        <div className="benefits-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24 }}>
           {[
             ["Top-of-market base", "We benchmark every offer to top-quartile US + EU."],
             ["Real equity", "Standard 4y/1y. We talk numbers openly."],
@@ -609,7 +609,7 @@ const ContactPage = () => {
       />
 
       <section style={{ paddingBottom: 120 }}>
-        <div className="container" style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr", gap: 64 }}>
+        <div className="container contact-grid" style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr", gap: 64 }}>
           {submitted ? (
             <div className="card" style={{ padding: 48, borderColor: "var(--accent)", background: "var(--accent-soft)" }}>
               <div style={{ display: "flex", gap: 14, alignItems: "center" }}>
@@ -636,7 +636,7 @@ const ContactPage = () => {
             </div>
           ) : (
             <form className="card" style={{ padding: 40 }} onSubmit={submit} noValidate>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+              <div className="form-2col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
                 <Field label="Your name" error={errors.name}>
                   <input className="input" value={form.name} onChange={update("name")} placeholder="Jane Cole"/>
                 </Field>
@@ -647,7 +647,7 @@ const ContactPage = () => {
               <Field label="Company or project" error={errors.company}>
                 <input className="input" value={form.company} onChange={update("company")} placeholder="Acme Holdings"/>
               </Field>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+              <div className="form-2col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
                 <Field label="What kind of work">
                   <select className="select" value={form.service} onChange={update("service")}>
                     {["Mobile App", "Web App", "AI Integration", "Full Product", "Not sure yet"].map((o) => <option key={o}>{o}</option>)}
@@ -717,7 +717,7 @@ const DocsPage = () => {
   return (
     <main data-screen-label="08 Docs">
       <section style={{ paddingTop: 40, paddingBottom: 100 }}>
-        <div className="container-wide" style={{ display: "grid", gridTemplateColumns: "260px 1fr 240px", gap: 56 }}>
+        <div className="container-wide docs-grid" style={{ display: "grid", gridTemplateColumns: "260px 1fr 240px", gap: 56 }}>
           <aside style={{ position: "sticky", top: 80, alignSelf: "flex-start", maxHeight: "calc(100vh - 100px)", overflowY: "auto" }}>
             <div className="input" style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 18 }}>
               <Icon name="search" size={14} style={{ color: "var(--text-muted)" }}/>

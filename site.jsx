@@ -18,6 +18,12 @@ const NAV = [
 
 const SiteHeader = ({ route, theme, onTheme }) => {
   const [open, setOpen] = useStateS(false);
+  useEffectS(() => {
+    if (open) document.body.style.overflow = "hidden";
+    else document.body.style.overflow = "";
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
+  useEffectS(() => { setOpen(false); }, [route]);
   return (
     <header className="site-header">
       <div className="container-wide" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: 64 }}>
@@ -32,21 +38,32 @@ const SiteHeader = ({ route, theme, onTheme }) => {
             >{n.label}</a>
           ))}
         </nav>
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+        <div className="header-actions" style={{ display: "flex", alignItems: "center", gap: 8 }}>
           <button className="btn btn-ghost btn-sm" onClick={onTheme} aria-label="Toggle theme" title="Toggle theme">
             <Icon name={theme === "dark" ? "sun" : "moon"} size={15}/>
           </button>
-<a href="#/contact" className="btn btn-primary btn-sm">
+          <a href="#/contact" className="btn btn-primary btn-sm">
             Start a project <Icon name="arrow-right" size={14}/>
           </a>
+          <button className="btn btn-ghost btn-sm mobile-menu-btn" onClick={() => setOpen(!open)} aria-label="Menu">
+            <Icon name={open ? "close" : "menu"} size={18}/>
+          </button>
         </div>
       </div>
 
-      <style>{`
-        @media (max-width: 1100px) {
-          .header-nav { display: none !important; }
-        }
-      `}</style>
+      {open && (
+        <div className="mobile-nav">
+          <button className="btn btn-ghost btn-sm mobile-nav-close" onClick={() => setOpen(false)} aria-label="Close menu">
+            <Icon name="close" size={20}/>
+          </button>
+          {NAV.map((n) => (
+            <a key={n.key} href={n.href} onClick={() => setOpen(false)}>{n.label}</a>
+          ))}
+          <a href="#/contact" className="btn btn-primary btn-lg" style={{ marginTop: 16, justifyContent: "center" }} onClick={() => setOpen(false)}>
+            Start a project <Icon name="arrow-right" size={14}/>
+          </a>
+        </div>
+      )}
     </header>
   );
 };
@@ -61,7 +78,7 @@ const SiteFooter = () => (
     marginTop: 120,
   }}>
     <div className="container-wide">
-      <div style={{
+      <div className="footer-grid" style={{
         display: "grid",
         gridTemplateColumns: "1.4fr 1fr 1fr 1fr",
         gap: 48,
@@ -87,7 +104,7 @@ const SiteFooter = () => (
           ["Security", "#/docs"], ["Privacy", "#/docs"], ["Terms", "#/docs"], ["Status", "#/docs"],
         ]}/>
       </div>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: 24, borderTop: "1px solid var(--border)" }}>
+      <div className="footer-bottom" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: 24, borderTop: "1px solid var(--border)" }}>
         <div className="t-mono" style={{ color: "var(--text-muted)" }}>
           © 2026 Elonyx Technologies · All rights reserved.
         </div>
@@ -262,18 +279,18 @@ const Hero = () => {
           into <span className="accent" style={{ fontStyle: "italic", fontWeight: 400 }}>products</span> <br/>
           that ship.
         </h1>
-        <div style={{ display: "flex", gap: 60, marginTop: 56, flexWrap: "wrap", alignItems: "flex-end" }}>
+        <div className="hero-cta" style={{ display: "flex", gap: 60, marginTop: 56, flexWrap: "wrap", alignItems: "flex-end" }}>
           <p style={{ maxWidth: "46ch", fontSize: 18, color: "var(--text-dim)", margin: 0 }}>
             Elonyx Technologies builds AI-powered mobile and web apps — from concept to launch. We move fast, ship clean, and solve <span style={{ color: "var(--text)" }}>real problems</span>.
           </p>
-          <div style={{ display: "flex", gap: 10 }}>
+          <div className="hero-btns" style={{ display: "flex", gap: 10 }}>
             <a href="#/contact" className="btn btn-primary btn-lg">Start a project<Icon name="arrow-right" size={15}/></a>
             <a href="#/work" className="btn btn-ghost btn-lg">See the work<Icon name="arrow-up-right" size={15}/></a>
           </div>
         </div>
       </div>
 
-      <div className="container" style={{ marginTop: 80, display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 1, background: "var(--border)", border: "1px solid var(--border)", borderRadius: "var(--r-md)", overflow: "hidden" }}>
+      <div className="container hero-stats" style={{ marginTop: 80, display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 1, background: "var(--border)", border: "1px solid var(--border)", borderRadius: "var(--r-md)", overflow: "hidden" }}>
         {[
           { l: "Projects shipped", v: "3+", s: "And counting" },
           { l: "Platforms", v: "iOS · Android · Web", s: "Cross-platform" },
@@ -332,7 +349,7 @@ const ServicesSection = () => (
         title={<>Full-stack development.<br/>From idea to app store.</>}
         sub="We handle everything — design, frontend, backend, AI, and deployment. One team, no hand-offs, no surprises."
       />
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 24 }}>
+      <div className="services-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 24 }}>
         {SERVICES.map((s, i) => (
           <Reveal key={s.code} delay={i * 80}>
             <div className="card card-pad" style={{ position: "relative", height: "100%", padding: 32, overflow: "hidden" }}>
@@ -370,7 +387,7 @@ const FeaturedWork = () => {
           />
           <a href="#/work" className="btn btn-ghost">All projects<Icon name="arrow-right" size={14}/></a>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 24 }}>
+        <div className="work-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 24 }}>
           {featured.map((c, i) => <WorkCard key={c.id} c={c} large={i === 0}/>)}
         </div>
       </div>
@@ -443,7 +460,7 @@ const AgentDemo = () => {
   return (
     <section style={{ padding: "120px 0", borderTop: "1px solid var(--border)", position: "relative" }}>
       <div className="container">
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1.2fr", gap: 80, alignItems: "center" }}>
+        <div className="agent-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1.2fr", gap: 80, alignItems: "center" }}>
           <div>
             <SectionHead
               eyebrow="AI that works"
@@ -523,7 +540,7 @@ const ProcessTimeline = () => {
     <section style={{ padding: "120px 0", borderTop: "1px solid var(--border)" }}>
       <div className="container">
         <SectionHead eyebrow="How we work" title="A clear process. No guesswork."/>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 1, background: "var(--border)", border: "1px solid var(--border)", borderRadius: "var(--r-md)", overflow: "hidden" }}>
+        <div className="process-grid" style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 1, background: "var(--border)", border: "1px solid var(--border)", borderRadius: "var(--r-md)", overflow: "hidden" }}>
           {phases.map((p, i) => (
             <div key={i} style={{ background: "var(--surface)", padding: 28, minHeight: 240, position: "relative" }}>
               <div className="t-mono" style={{ color: "var(--accent-bright)", marginBottom: 28 }}>0{i + 1} / 05</div>
@@ -541,7 +558,7 @@ const ProcessTimeline = () => {
 // ----- STATS -----
 const Stats = () => (
   <section style={{ padding: "120px 0", borderTop: "1px solid var(--border)" }}>
-    <div className="container" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "center" }}>
+    <div className="container stats-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "center" }}>
       <div>
         <div className="t-eyebrow" style={{ marginBottom: 16 }}><span className="dot"/>By the numbers</div>
         <h2 className="t-display" style={{ fontSize: 56, margin: 0, lineHeight: 1 }}>
@@ -611,9 +628,9 @@ const CTASection = () => (
           linear-gradient(180deg, var(--surface), var(--bg-2))
         `,
         padding: "80px 56px",
-      }}>
+      }} className="cta-inner">
         <div className="bg-grid" style={{ position: "absolute", inset: 0, opacity: 0.3 }}/>
-        <div style={{ position: "relative", display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: 32 }}>
+        <div className="cta-flex" style={{ position: "relative", display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: 32 }}>
           <div>
             <div className="t-eyebrow" style={{ marginBottom: 18 }}><span className="dot"/>Free consultation · No obligations</div>
             <h2 className="t-display" style={{ fontSize: "clamp(40px, 6vw, 84px)", margin: 0, maxWidth: "14ch" }}>
