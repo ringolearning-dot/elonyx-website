@@ -70,7 +70,7 @@ const SiteFooter = () => (
         <div>
           <Wordmark size={18}/>
           <p style={{ marginTop: 16, color: "var(--text-dim)", fontSize: 14, maxWidth: 36 + "ch" }}>
-            Elonyx Technologies LLC — Software, AI, and mobile development studio based in San Jose, California.
+            Elonyx Technologies — Software, AI, and mobile development studio based in San Jose, California.
           </p>
           <div className="t-mono" style={{ marginTop: 16, color: "var(--text-muted)" }}>
             <div>San Jose, CA</div>
@@ -89,7 +89,7 @@ const SiteFooter = () => (
       </div>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: 24, borderTop: "1px solid var(--border)" }}>
         <div className="t-mono" style={{ color: "var(--text-muted)" }}>
-          © 2026 Elonyx Technologies LLC · All rights reserved.
+          © 2026 Elonyx Technologies · All rights reserved.
         </div>
         <div className="t-mono" style={{ color: "var(--text-muted)", display: "flex", gap: 16 }}>
           <span className="status live">elonyxtechnologies.com</span>
@@ -248,7 +248,7 @@ const Hero = () => {
       }}/>
       <div className="container" style={{ position: "relative" }}>
         <div className="t-eyebrow" style={{ marginBottom: 28 }}>
-          <span className="dot"/>San Jose, CA · Elonyx Technologies LLC
+          <span className="dot"/>San Jose, CA · Elonyx Technologies
         </div>
         <h1 className="t-display" style={{
           fontSize: "clamp(56px, 9.5vw, 156px)",

@@ -302,7 +302,7 @@ const AboutPage = () => (
         <div style={{ position: "relative", paddingLeft: 28 }}>
           <div style={{ position: "absolute", left: 5, top: 0, bottom: 0, width: 1, background: "var(--border)" }}/>
           {[
-            ["2024", "Founded", "Elonyx Technologies LLC established in San Jose, California."],
+            ["2024", "Founded", "Elonyx Technologies established in San Jose, California."],
             ["Early 2025", "Y-NO development begins", "Started building our flagship AI-powered inventory app."],
             ["Mid 2025", "Y-NO launches", "Shipped to iOS, Android, and web with AI vision, voice, and chat features."],
             ["2026", "Growing", "Expanding our services and taking on new client projects."],
