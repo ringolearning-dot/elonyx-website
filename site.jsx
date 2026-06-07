@@ -606,7 +606,7 @@ const Testimonial = () => (
           <Avatar initials="AT" accent/>
           <div>
             <div style={{ fontWeight: 600 }}>Anthony Tannoury</div>
-            <div className="t-mono" style={{ color: "var(--text-muted)" }}>Founder, Elonyx Technologies</div>
+            <div className="t-mono" style={{ color: "var(--text-muted)" }}>Co-Founder, Elonyx Technologies</div>
           </div>
         </div>
       </Reveal>

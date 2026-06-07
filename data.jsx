@@ -38,7 +38,7 @@ const CASE_STUDIES = [
 ];
 
 const TEAM = [
-  { name: "Anthony T.",  role: "Founder · CEO",         initials: "AT" },
+  { name: "Anthony T.",  role: "Co-Founder · CEO",       initials: "AT" },
 ];
 
 const SERVICES = [
@@ -175,7 +175,7 @@ const ADMIN_AGENTS = [];
 const ADMIN_INVOICES = [];
 
 const ADMIN_TEAM_FULL = [
-  { id: "u-01", name: "Anthony T.", role: "Founder · CEO", email: "elonyxtechnologies@gmail.com", status: "Active", perms: "Owner" },
+  { id: "u-01", name: "Anthony T.", role: "Co-Founder · CEO", email: "elonyxtechnologies@gmail.com", status: "Active", perms: "Owner" },
 ];
 
 // Chart series: projects over 12 months
